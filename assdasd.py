@@ -34,7 +34,7 @@ def create_excel_from_csv(file_path, count):
                         new_row.append(row[i])
                 ws.append(new_row)
 
-    excel_file_name = (cwd + str(count) + '_temp_excelfile.xlsx').replace('\\', '/')
+    excel_file_name = cwd + str(count) + '_temp_excelfile.xlsx'
     wb.save(excel_file_name)
 
     return excel_file_name
@@ -59,11 +59,21 @@ def add_ids_to_srag_records(new_wb_sheet, last_id):
     return last_id
 
 
+def delete_unused_columns(new_wb_sheet):
+    print("deletando colunas")
+    print(new_wb_sheet)
+
+    for id in reversed(range(1, new_wb_sheet.max_column + 1)):
+        if id in columns_to_delete:
+            new_wb_sheet.delete_cols(id)
+
+
 def create_new_formatted_csv_file(new_wb_sheet, count):
     print("criando novo csv")
     print(new_wb_sheet)
     new_csv_filename = str(os.getcwd().replace('\\', '/')) + '/ready_files/' + str(count) + '_finalcsv.csv'
     csv = open(new_csv_filename, "w+", encoding='utf-8')
+
     for row in new_wb_sheet.rows:
         l = list(row)
         for i in range(len(l)):
@@ -90,15 +100,12 @@ def sort_list(files_list):
 
     return sorted_list
 
-
 def run_on_exit():
     for file_to_delete in os.listdir(cwd):
         os.remove(cwd + file_to_delete)
 
 
-### Start of main.py execution ###
-
-with open('file_to_upload/dummydata4.csv', encoding='utf-8') as csv_big_file:
+with open('file_to_upload/datateste.csv', encoding='utf-8') as csv_big_file:
     split(csv_big_file)
 
 get_all_files = []
@@ -123,6 +130,7 @@ for file in all_files_list:
 
     open_new_excel_file_and_insert_firstrow(new_wb_sheet)
     last_id = add_ids_to_srag_records(new_wb_sheet, last_id)
+    # delete_unused_columns(new_wb_sheet)
     new_wb.save(excel_new_file)
     create_new_formatted_csv_file(new_wb_sheet, count)
 
@@ -130,6 +138,27 @@ for file in all_files_list:
     print("terminou execução arquivo " + str(count))
     count += 1
 
+for file in os.listdir(cwd):
+    os.remove(cwd + file)
 
-run_on_exit()
 send_files()
+
+
+# files_sql = []
+# cwd = os.getcwd()
+# for file in os.listdir(cwd):
+#     if file.endswith("_teste.csv"):
+#         files_sql.append(os.path.join(cwd, file).replace('\\', '/'))
+#
+# for file in files_sql:
+#     print("começou inserção arquivo " + file)
+#     load_file = "LOAD DATA LOCAL INFILE '" + file + "' INTO TABLE srag FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
+#
+#     cursor.execute(load_file)
+#     db.commit()
+#     print("terminou inserção arquivo " + file)
+#
+#
+# load_file = "LOAD DATA LOCAL INFILE 'out.csv' INTO TABLE cnes FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
+# cursor.execute(load_file)
+# db.commit()

@@ -2,7 +2,7 @@ import os
 import csv
 
 
-def split(filehandler, delimiter=';', row_limit=10000,
+def split(filehandler, delimiter=';', row_limit=100000,
           output_name_template='%s_temp_csvfile.csv', output_path='temp_files/', keep_headers=True):
     """
     A quick bastardization of the Python CSV library.
