@@ -29,10 +29,10 @@ def create_excel_from_csv(file_path, count):
             if row[107] not in ('4', '5', 'CLASSI_FIN'):
                 continue
             else:
+                row = parse_row(row)
                 new_row = []
                 for i in range(0, len(row)):
-                    row = parse_row(row)
-                    print(row)
+                    # print(row)
                     if i not in columns_to_delete:
                         row[i] = format_special_characters(row[i])
                         new_row.append(row[i])

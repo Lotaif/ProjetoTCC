@@ -89,7 +89,7 @@ def get_CS_GESTANT_desc(CS_GESTANT):
         return 'Terceiro Trimestre'
     elif CS_GESTANT == '4':
         return 'Idade Gestacional Ignorada'
-    elif CS_GESTANT == 5:
+    elif CS_GESTANT == '5':
         return 'Não'
     elif CS_GESTANT == '6':
         return 'Não se aplica'
