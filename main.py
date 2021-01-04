@@ -3,6 +3,7 @@ import openpyxl
 import csv
 from split import split
 from sendfiles import send_files
+from parse import parse_row
 
 columns_to_delete = [8, 13, 14, 15, 18, 21, 24, 26, 30, 55, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 73, 75, 87, 88,
                      89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 112, 113, 116, 120,
@@ -10,6 +11,7 @@ columns_to_delete = [8, 13, 14, 15, 18, 21, 24, 26, 30, 55, 58, 59, 60, 61, 62, 
 
 last_id = 2
 
+print('Bateu')
 
 def format_special_characters(value):
     value = value.replace(';', ',')
@@ -29,6 +31,7 @@ def create_excel_from_csv(file_path, count):
             else:
                 new_row = []
                 for i in range(0, len(row)):
+                    row  = parse_row(row)
                     if i not in columns_to_delete:
                         row[i] = format_special_characters(row[i])
                         new_row.append(row[i])
@@ -98,7 +101,7 @@ def run_on_exit():
 
 ### Start of main.py execution ###
 
-with open('file_to_upload/dummydata4.csv', encoding='utf-8') as csv_big_file:
+with open('file_to_upload/arquivoduaslinhas.csv', encoding='utf-8') as csv_big_file:
     split(csv_big_file)
 
 get_all_files = []
