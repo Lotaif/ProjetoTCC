@@ -1,8 +1,6 @@
 def parse_row(row):
     if row[0] == 'DT_NOTIFIC':
         return row
-    print(row)
-    print(len(row))
     row[16] = get_CS_GESTANT_desc(row[16])
     row[17] = get_CS_RACA_desc(row[17])
     row[19] = get_CS_ESCOL_N_desc(row[19])
@@ -80,7 +78,6 @@ def parse_row(row):
     #        new_row[i] = get_yes_or_no(row[i])
     #    else:
     #        new_row[i] = row[i]
-    print(row)
     return row
 
 def get_CS_GESTANT_desc(CS_GESTANT):
@@ -92,7 +89,7 @@ def get_CS_GESTANT_desc(CS_GESTANT):
         return 'Terceiro Trimestre'
     elif CS_GESTANT == '4':
         return 'Idade Gestacional Ignorada'
-    elif CS_GESTANT == '5':
+    elif CS_GESTANT == 5:
         return 'Não'
     elif CS_GESTANT == '6':
         return 'Não se aplica'
@@ -160,8 +157,8 @@ def get_SUPORT_VEN_desc(SUPORT_VEN):
         return 'Ignorado'
 
 def get_RAIOX_RES_desc(RAIOX_RES):
-	if RAIOX_RES == '1':
-	    return 'Normal'
+    if RAIOX_RES == '1':
+        return 'Normal'
     elif RAIOX_RES == '2':
         return 'Infiltrado intersticial'
     elif RAIOX_RES == '3':
@@ -178,108 +175,108 @@ def get_RAIOX_RES_desc(RAIOX_RES):
         return 'Ignorado'
 
 def get_TP_AMOSTRA_desc(TP_AMOSTRA):
-	if TP_AMOSTRA == '1':
-		return 'Secreção de Nasoorofaringe'
-	elif TP_AMOSTRA == '2':
-		return 'Lavado Broco-alveolar'
-	elif TP_AMOSTRA == '3':
-		return 'Tecido post-mortem'
-	elif TP_AMOSTRA == '4':
-		return 'Outra, qual?'
-	elif TP_AMOSTRA == '5':
-		return 'LCR'
-	elif TP_AMOSTRA == '9':
-		return 'Ignorado'
+    if TP_AMOSTRA == '1':
+        return 'Secreção de Nasoorofaringe'
+    elif TP_AMOSTRA == '2':
+        return 'Lavado Broco-alveolar'
+    elif TP_AMOSTRA == '3':
+        return 'Tecido post-mortem'
+    elif TP_AMOSTRA == '4':
+        return 'Outra, qual?'
+    elif TP_AMOSTRA == '5':
+        return 'LCR'
+    elif TP_AMOSTRA == '9':
+        return 'Ignorado'
     else:
         return 'Ignorado'
 
 
 def get_CLASSI_FIN_desc(CLASSI_FIN):
-	if CLASSI_FIN == '1':
-		return 'SRAG por influenza'
-	elif CLASSI_FIN == '2':
-		return 'SRAG por outro vírus respiratório'
-	elif CLASSI_FIN == '3':
-		return 'SRAG por outro agente etiológico, qual:'
-	elif CLASSI_FIN == '4':
-		return 'SRAG não especificado'
-	elif CLASSI_FIN == '5':
-		return 'SRAG por COVID-19'
-	elif CLASSI_FIN == '9':
-		return 'Ignorado'
+    if CLASSI_FIN == '1':
+        return 'SRAG por influenza'
+    elif CLASSI_FIN == '2':
+        return 'SRAG por outro vírus respiratório'
+    elif CLASSI_FIN == '3':
+        return 'SRAG por outro agente etiológico, qual:'
+    elif CLASSI_FIN == '4':
+        return 'SRAG não especificado'
+    elif CLASSI_FIN == '5':
+        return 'SRAG por COVID-19'
+    elif CLASSI_FIN == '9':
+        return 'Ignorado'
     else:
         return 'Ignorado'
 
 
 def get_CRITERIO_desc(CRITERIO):
-	if CRITERIO == '1':
-		return 'Laboratorial'
-	elif CRITERIO == '2':
-		return 'Clínico Epidemiológico'
-	elif CRITERIO == '3':
-		return 'Clínico'
-	elif CRITERIO == '4':
-		return 'Clínico Imagem'
-	elif CRITERIO == '9':
-		return 'Ignorado'
+    if CRITERIO == '1':
+        return 'Laboratorial'
+    elif CRITERIO == '2':
+        return 'Clínico Epidemiológico'
+    elif CRITERIO == '3':
+        return 'Clínico'
+    elif CRITERIO == '4':
+        return 'Clínico Imagem'
+    elif CRITERIO == '9':
+        return 'Ignorado'
     else:
         return 'Ignorado'
 
 
 def get_EVOLUCAO_desc(EVOLUCAO):
-	if EVOLUCAO == '1':
-		return 'Cura'
-	elif EVOLUCAO == '2':
-		return 'Óbito'
-	elif EVOLUCAO == '3':
-		return 'Óbito por outras causas'
-	elif EVOLUCAO == '9':
-		return 'Ignorado'
+    if EVOLUCAO == '1':
+        return 'Cura'
+    elif EVOLUCAO == '2':
+        return 'Óbito'
+    elif EVOLUCAO == '3':
+        return 'Óbito por outras causas'
+    elif EVOLUCAO == '9':
+        return 'Ignorado'
     else:
         return 'Ignorado'
 
 
 def get_TOMO_RES_desc(TOMO_RES):
-	if TOMO_RES == '1':
-		return 'Tipico COVID-19'
-	elif TOMO_RES == '2':
-		return 'Indeterminado COVID-19'
-	elif TOMO_RES == '3':
-		return 'Atípico COVID-19'
-	elif TOMO_RES == '4':
-		return 'Negativo para Pneumonia'
-	elif TOMO_RES == '5':
-		return 'Outro'
-	elif TOMO_RES == '6':
-		return 'Não realizado'
-	elif TOMO_RES == '9':
-		return 'Ignorado'
+    if TOMO_RES == '1':
+        return 'Tipico COVID-19'
+    elif TOMO_RES == '2':
+        return 'Indeterminado COVID-19'
+    elif TOMO_RES == '3':
+        return 'Atípico COVID-19'
+    elif TOMO_RES == '4':
+        return 'Negativo para Pneumonia'
+    elif TOMO_RES == '5':
+        return 'Outro'
+    elif TOMO_RES == '6':
+        return 'Não realizado'
+    elif TOMO_RES == '9':
+        return 'Ignorado'
     else:
         return 'Ignorado'
 
 
 def get_TP_AM_SOR_desc(TP_AM_SOR):
-	if TP_AM_SOR == '1':
-		return 'Sangue/plasma/soro'
-	elif TP_AM_SOR == '2':
-		return 'Outra, qual?'
-	elif TP_AM_SOR == '9':
-		return 'Ignorado'
+    if TP_AM_SOR == '1':
+        return 'Sangue/plasma/soro'
+    elif TP_AM_SOR == '2':
+        return 'Outra, qual?'
+    elif TP_AM_SOR == '9':
+        return 'Ignorado'
     else:
         return 'Ignorado'   
 
 
 def get_TP_SOR_desc(TP_SOR):
-	if TP_SOR == '1':
-		return 'Teste rápido'
-	elif TP_SOR == '2':
-		return 'Elisa'
-	elif TP_SOR == '3':\
-		return 'Quimiluminescência'
-	elif TP_SOR == '4':
-		return 'Outro, qual'
-	elif TP_SOR == '9':
-		return 'Ignorado'
+    if TP_SOR == '1':
+        return 'Teste rápido'
+    elif TP_SOR == '2':
+        return 'Elisa'
+    elif TP_SOR == '3':\
+        return 'Quimiluminescência'
+    elif TP_SOR == '4':
+        return 'Outro, qual'
+    elif TP_SOR == '9':
+        return 'Ignorado'
     else:
         return 'Ignorado'
 
