@@ -1,3 +1,6 @@
+
+
+
 def parse_row(row):
     if row[0] == 'DT_NOTIFIC':
         return row
@@ -47,7 +50,7 @@ def parse_row(row):
     row[125] = get_yes_or_no(row[125])
     row[126] = get_yes_or_no(row[126])
     row[137] = get_yes_or_no(row[137])
-    #for i in range(0, len(row)):
+    # for i in range(0, len(row)):
     #    if i == 16:
     #        new_row[i] = get_CS_GESTANT_desc(row[i])
     #    elif i == 17:
@@ -80,6 +83,7 @@ def parse_row(row):
     #        new_row[i] = row[i]
     return row
 
+
 def get_CS_GESTANT_desc(CS_GESTANT):
     if CS_GESTANT == '1':
         return 'Primeiro Trimestre'
@@ -98,11 +102,12 @@ def get_CS_GESTANT_desc(CS_GESTANT):
     else:
         return 'Ignorado'
 
+
 def get_CS_RACA_desc(CS_RACA):
     if CS_RACA == '1':
         return 'Branca'
     elif CS_RACA == '2':
-        return 'Preta' 
+        return 'Preta'
     elif CS_RACA == '3':
         return 'Amarela'
     elif CS_RACA == '4':
@@ -114,13 +119,14 @@ def get_CS_RACA_desc(CS_RACA):
     else:
         return 'Ignorado'
 
+
 def get_CS_ESCOL_N_desc(CS_ESCOL_N):
     if CS_ESCOL_N == '0':
         return 'Sem escolaridade/Analfabeto'
     elif CS_ESCOL_N == '1':
         return 'Fundamental 1º ciclo (1ª a 5ª série)'
     elif CS_ESCOL_N == '2':
-        return 'Fundamental 2º ciclo (6ª a 9ª série)' 
+        return 'Fundamental 2º ciclo (6ª a 9ª série)'
     elif CS_ESCOL_N == '3':
         return 'Médio (1º ao 3º ano)'
     elif CS_ESCOL_N == '4':
@@ -132,17 +138,19 @@ def get_CS_ESCOL_N_desc(CS_ESCOL_N):
     else:
         return 'Ignorado'
 
+
 def get_CS_ZONA_desc(CS_ZONA):
     if CS_ZONA == '1':
         return 'Urbana'
     elif CS_ZONA == '2':
-        return 'Rural' 
+        return 'Rural'
     elif CS_ZONA == '3':
         return 'Periurbana'
     elif CS_ZONA == '9':
         return 'Ignorado'
     else:
         return 'Ignorado'
+
 
 def get_SUPORT_VEN_desc(SUPORT_VEN):
     if SUPORT_VEN == '1':
@@ -155,6 +163,7 @@ def get_SUPORT_VEN_desc(SUPORT_VEN):
         return 'Ignorado'
     else:
         return 'Ignorado'
+
 
 def get_RAIOX_RES_desc(RAIOX_RES):
     if RAIOX_RES == '1':
@@ -173,6 +182,7 @@ def get_RAIOX_RES_desc(RAIOX_RES):
         return 'Ignorado'
     else:
         return 'Ignorado'
+
 
 def get_TP_AMOSTRA_desc(TP_AMOSTRA):
     if TP_AMOSTRA == '1':
@@ -263,7 +273,7 @@ def get_TP_AM_SOR_desc(TP_AM_SOR):
     elif TP_AM_SOR == '9':
         return 'Ignorado'
     else:
-        return 'Ignorado'   
+        return 'Ignorado'
 
 
 def get_TP_SOR_desc(TP_SOR):
@@ -271,14 +281,15 @@ def get_TP_SOR_desc(TP_SOR):
         return 'Teste rápido'
     elif TP_SOR == '2':
         return 'Elisa'
-    elif TP_SOR == '3':\
-        return 'Quimiluminescência'
+    elif TP_SOR == '3': \
+            return 'Quimiluminescência'
     elif TP_SOR == '4':
         return 'Outro, qual'
     elif TP_SOR == '9':
         return 'Ignorado'
     else:
         return 'Ignorado'
+
 
 def get_yes_or_no(cod):
     if cod == '1':

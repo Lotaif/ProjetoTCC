@@ -26,9 +26,9 @@ def send_files():
         db.commit()
         print("terminou inserção arquivo " + file)
 
-    print("começou inserção cnes")
-    load_file = "LOAD DATA LOCAL INFILE '" + cwd.replace('\\', '/') + "out-2.csv' INTO TABLE cnes FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
-    print(load_file)
-    cursor.execute(load_file)
-    db.commit()
-    print("terminou inserção cnes")
+    # print("começou inserção cnes")
+    # load_file = "LOAD DATA LOCAL INFILE '" + cwd.replace('\\', '/') + "out-2.csv' INTO TABLE cnes FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
+    # print(load_file)
+    # cursor.execute(load_file)
+    # db.commit()
+    # print("terminou inserção cnes")

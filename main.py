@@ -4,6 +4,7 @@ import csv
 from split import split
 from sendfiles import send_files
 from parse import parse_row
+import unicodecsv
 
 columns_to_delete = [8, 13, 14, 15, 18, 21, 24, 26, 30, 55, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 73, 75, 87, 88,
                      89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 112, 113, 116, 120,
@@ -11,7 +12,6 @@ columns_to_delete = [8, 13, 14, 15, 18, 21, 24, 26, 30, 55, 58, 59, 60, 61, 62, 
 
 last_id = 2
 
-print('Bateu')
 
 def format_special_characters(value):
     value = value.replace(';', ',')
@@ -32,7 +32,7 @@ def create_excel_from_csv(file_path, count):
                 row = parse_row(row)
                 new_row = []
                 for i in range(0, len(row)):
-                    # print(row)
+                    print(row)
                     if i not in columns_to_delete:
                         row[i] = format_special_characters(row[i])
                         new_row.append(row[i])
@@ -67,22 +67,36 @@ def create_new_formatted_csv_file(new_wb_sheet, count):
     print("criando novo csv")
     print(new_wb_sheet)
     new_csv_filename = str(os.getcwd().replace('\\', '/')) + '/ready_files/' + str(count) + '_finalcsv.csv'
-    csv = open(new_csv_filename, "w+", encoding='utf-8')
-    for row in new_wb_sheet.rows:
-        l = list(row)
-        for i in range(len(l)):
-            if i == len(l) - 1:
-                if str(l[i].value) == 'None':
-                    csv.write('' + ';')
-                else:
-                    csv.write(str(l[i].value))
-            else:
-                if str(l[i].value) == 'None':
-                    csv.write('' + ';')
-                else:
-                    csv.write(str(l[i].value) + ';')
-        csv.write('\n')
+    csvfile = open(new_csv_filename, 'w', encoding='cp860', newline='')
+    wr = csv.writer(csvfile, quoting=csv.QUOTE_ALL, delimiter=";")
+    for row in new_wb_sheet.iter_rows():
+        lrow = []
+        for cell in row:
+            x = str(cell.value)
+            lrow.append(x)
+        wr.writerow(lrow)
+    print(" ... done")
+    csvfile.close()
 
+
+
+
+    # for row in new_wb_sheet.rows:
+    #     l = list(row)
+    #     for i in range(len(l)):
+    #         if i == len(l) - 1:
+    #             if str(l[i].value) == 'None':
+    #                 csv.write('' + ';')
+    #             else:
+    #                 csv.write(str(l[i].value).encode().decode())
+    #         else:
+    #             if str(l[i].value) == 'None':
+    #                 csv.write('' + ';')
+    #             else:
+    #                 csv.write(str(l[i].value).encode().decode() + ';')
+    #     csv.write('\n')
+    #
+    # csv.close()
 
 def sort_list(files_list):
     sorted_list = []
@@ -102,7 +116,7 @@ def run_on_exit():
 
 ### Start of main.py execution ###
 
-with open('file_to_upload/arquivoduaslinhas.csv', encoding='utf-8') as csv_big_file:
+with open('file_to_upload/dummydata3.csv', encoding='utf-8') as csv_big_file:
     split(csv_big_file)
 
 get_all_files = []
@@ -134,6 +148,5 @@ for file in all_files_list:
     print("terminou execução arquivo " + str(count))
     count += 1
 
-
-run_on_exit()
+# run_on_exit()
 send_files()
